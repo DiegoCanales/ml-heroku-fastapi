@@ -1,0 +1,15 @@
+name: ml-heroku-fastapi
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8
+  - scikit-learn
+  - dvc
+  - pandas
+  - numpy
+  - pytest
+  - jupyterlab
+  - fastapi
+  - uvicorn
+  - autopep8
+  - flake8
