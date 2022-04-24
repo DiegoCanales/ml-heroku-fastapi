@@ -4,6 +4,8 @@ channels:
 dependencies:
   - python=3.8
   - mamba
+  - pip
+  - pyprojroot
   - scikit-learn
   - dvc
   - dvc-s3
@@ -15,3 +17,6 @@ dependencies:
   - uvicorn
   - autopep8
   - flake8
+  - pandas-profiling[notebook]
+  - pip:
+    - -e . --no-cache-dir
