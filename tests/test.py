@@ -7,10 +7,10 @@ import pandas as pd
 @pytest.fixture(scope='session')
 def data_raw():
     try:
-        df = pd.read_csv(CensusDataset.raw_pth, sep=", ")
+        df = pd.read_csv(CensusDataset.sample_pth, sep=", ")
     except FileNotFoundError as err:
         raise err
-    return df.sample(100)
+    return df
 
 
 @pytest.fixture(scope='session')

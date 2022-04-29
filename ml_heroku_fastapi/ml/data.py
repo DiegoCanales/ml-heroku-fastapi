@@ -19,6 +19,7 @@ class CensusDataset:
     FINAL_FEATURES = CATEGORICAL_FEATURES + QUANTITATIVE_FEATURES + [LABEL_FEATURE]
 
     raw_pth = DATA_RAW_DIR / "census.csv"
+    sample_pth = DATA_RAW_DIR / "census_sample.csv"
     preprocessed_pth = DATA_INTERIM_DIR / "census_preprocessed.csv"
     train_pth = DATA_INTERIM_DIR / "census_preprocessed_train.csv"
     test_pth = DATA_INTERIM_DIR / "census_preprocessed_test.csv"
