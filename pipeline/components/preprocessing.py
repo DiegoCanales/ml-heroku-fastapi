@@ -1,14 +1,14 @@
 import pandas as pd
 from ml_heroku_fastapi.ml.data import CensusDataset
-from ml_heroku_fastapi.utils.paths import DATA_INTERIM_DIR, DATA_RAW_DIR
-
-CENSUS_DATA_PTH = DATA_RAW_DIR / "census.csv"
-CENSUS_INTERIM = DATA_INTERIM_DIR / "census_preprocessed.csv"
+from ml_heroku_fastapi.utils.config import logger
 
 
 def run():
-    df = pd.read_csv(CENSUS_DATA_PTH, sep=", ")
+    logger.info(f"Reading data {CensusDataset.raw_pth}")
+    df = pd.read_csv(CensusDataset.raw_pth, sep=", ")
     census = CensusDataset(df)
+    logger.info("Preprocessing dataset")
     df = census.preprocess()
-    DATA_INTERIM_DIR.mkdir(exist_ok=True)
-    df.to_csv(CENSUS_INTERIM, sep=',', index=False)
+    logger.info("Dataset preprocessed")
+    df.to_csv(CensusDataset.preprocessed_pth, sep=',', index=False)
+    logger.info(f"Dataset saved at {CensusDataset.preprocessed_pth}")

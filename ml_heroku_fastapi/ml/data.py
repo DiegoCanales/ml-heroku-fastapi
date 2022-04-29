@@ -14,11 +14,14 @@ class CensusDataset:
                             "native-country"]
     QUANTITATIVE_FEATURES = ["age",
                              "hours-per-week"]
+    LABEL_FEATURE = "salary"
 
-    FINAL_FEATURES = CATEGORICAL_FEATURES + QUANTITATIVE_FEATURES
+    FINAL_FEATURES = CATEGORICAL_FEATURES + QUANTITATIVE_FEATURES + [LABEL_FEATURE]
 
     raw_pth = DATA_RAW_DIR / "census.csv"
     preprocessed_pth = DATA_INTERIM_DIR / "census_preprocessed.csv"
+    train_pth = DATA_INTERIM_DIR / "census_preprocessed_train.csv"
+    test_pth = DATA_INTERIM_DIR / "census_preprocessed_test.csv"
     processed_pth = DATA_PROCESSED_DIR / "census_processed.csv"
 
     def __init__(self, df: pd.DataFrame):
