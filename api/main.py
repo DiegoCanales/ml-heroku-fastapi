@@ -33,6 +33,19 @@ class CensusModel(BaseModel):
 
     class Config:
         allow_population_by_field_name = True
+        schema_extra = {
+            "example": {
+                'workclass': 'State-gov',
+                'education': 'HS-grad',
+                'marital-status': 'Divorced',
+                'occupation': 'Adm-clerical',
+                'race': 'White',
+                'sex': 'Female',
+                'native-country': 'United-States',
+                'age': 50,
+                'hours-per-week': 46
+            }
+        }
 
 
 # Instantiate the app.
