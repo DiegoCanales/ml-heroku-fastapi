@@ -52,4 +52,5 @@ jobs:
         pytest -s tests/*
     - name: Test API
       run: |
+        dvc pull model/model.joblib
         pytest -s api/test_api.py
