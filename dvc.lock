@@ -1,0 +1,56 @@
+schema: '2.0'
+stages:
+  preprocessing:
+    cmd: python pipeline/main.py --steps preprocessing
+    deps:
+    - path: data/raw/census.csv
+      md5: 145de00f6e6053d3f7044628f9a5b5ff
+      size: 3974474
+    outs:
+    - path: data/interim/census_preprocessed.csv
+      md5: 56b13d3e6dae33941b00bc383094543a
+      size: 2576978
+  train:
+    cmd: python pipeline/main.py --steps train
+    deps:
+    - path: data/interim/census_preprocessed.csv
+      md5: 56b13d3e6dae33941b00bc383094543a
+      size: 2576978
+    outs:
+    - path: data/interim/census_preprocessed_test.csv
+      md5: 715d5cc3ccd8fefa02b20b3b0fcc60e4
+      size: 515703
+    - path: data/interim/census_preprocessed_train.csv
+      md5: c8c9e21e1e86939a73e188bdecfc62e2
+      size: 2061371
+    - path: model/encoder.joblib
+      md5: 16b21e0bbebadf6d0ef47c7649d9a436
+      size: 3498
+    - path: model/lb.joblib
+      md5: 68d67643c2f11e180eaa335146ade2ea
+      size: 403
+    - path: model/model.joblib
+      md5: 3a4a05c85bd346bb8b8a48af7d62671b
+      size: 9138004
+  model_evaluation:
+    cmd: python pipeline/main.py --steps model_evaluation
+    deps:
+    - path: data/interim/census_preprocessed_test.csv
+      md5: 715d5cc3ccd8fefa02b20b3b0fcc60e4
+      size: 515703
+    - path: model/encoder.joblib
+      md5: 16b21e0bbebadf6d0ef47c7649d9a436
+      size: 3498
+    - path: model/lb.joblib
+      md5: 68d67643c2f11e180eaa335146ade2ea
+      size: 403
+    - path: model/model.joblib
+      md5: 3a4a05c85bd346bb8b8a48af7d62671b
+      size: 9138004
+    outs:
+    - path: metrics/general.csv
+      md5: dff73317434b11b893ed4195d830abd2
+      size: 71
+    - path: metrics/slice_performance.csv
+      md5: 7637fb751660f0fe3a27329cb63476a4
+      size: 4923
