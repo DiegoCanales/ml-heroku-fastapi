@@ -51,7 +51,3 @@ uvicorn --reload --app-dir api/ main:app
 ```bash
 pytest -s api/test_api.py
 ```
-
-
-# TODO
-    - [ ] Deploy en Heroku
