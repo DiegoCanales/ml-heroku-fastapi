@@ -53,4 +53,6 @@ jobs:
     - name: Test API
       run: |
         dvc pull model/model.joblib
+        dvc pull model/encoder.joblib
+        dvc pull model/lb.joblib
         pytest -s api/test_api.py
