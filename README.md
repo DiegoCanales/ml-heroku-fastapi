@@ -29,6 +29,14 @@ cd pipeline
 python main.py
 ```
 
+### DVC pipeline
+
+To execute the dvc pipeline execute:
+
+```bash
+dvc repro
+```
+
 ### Tests
 
 To execute the tests must run the following command.
@@ -50,4 +58,12 @@ uvicorn --reload --app-dir api/ main:app
 
 ```bash
 pytest -s api/test_api.py
+```
+
+#### Request live API
+
+To request the live API, execute the following command:
+
+```bash
+python api/request_api.py
 ```
