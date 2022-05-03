@@ -1,0 +1,27 @@
+stages:
+  preprocessing:
+    cmd: python pipeline/main.py --steps preprocessing
+    deps:
+      - data/raw/census.csv
+    outs:
+      - data/interim/census_preprocessed.csv
+  train:
+    cmd: python pipeline/main.py --steps train 
+    deps:
+      - data/interim/census_preprocessed.csv
+    outs:
+      - data/interim/census_preprocessed_test.csv
+      - data/interim/census_preprocessed_train.csv
+      - model/encoder.joblib
+      - model/model.joblib
+      - model/lb.joblib
+  model_evaluation:
+    cmd: python pipeline/main.py --steps model_evaluation
+    deps:
+      - data/interim/census_preprocessed_test.csv
+      - model/encoder.joblib
+      - model/model.joblib
+      - model/lb.joblib
+    outs:
+      - metrics/general.csv
+      - metrics/slice_performance.csv
