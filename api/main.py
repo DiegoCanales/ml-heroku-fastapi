@@ -1,4 +1,5 @@
-import numpy as np
+import os
+
 import pandas as pd
 from fastapi import FastAPI
 from joblib import load
@@ -6,6 +7,13 @@ from ml_heroku_fastapi.ml.data import CensusDataset, process_data
 from ml_heroku_fastapi.ml.model import inference
 from ml_heroku_fastapi.utils.paths import MODEL_DIR
 from pydantic import BaseModel, Field
+
+
+if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
 
 model = load(MODEL_DIR / "model.joblib")
 encoder = load(MODEL_DIR / "encoder.joblib")
